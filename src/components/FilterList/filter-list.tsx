@@ -17,9 +17,19 @@ export default function FilterList() {
 
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target
-    setSelectedFilters(prevFilters =>
-      checked ? [...prevFilters, name] : prevFilters.filter(filter => filter !== name)
-    )
+    setSelectedFilters(prevFilters => {
+      if (name === 'all') {
+        return checked ? ['all'] : []
+      }
+
+      if (checked) {
+        return prevFilters.includes('all')
+          ? [...prevFilters.filter(filter => filter !== 'all'), name]
+          : [...prevFilters, name]
+      } else {
+        return prevFilters.filter(filter => filter !== name)
+      }
+    })
   }
 
   return (
