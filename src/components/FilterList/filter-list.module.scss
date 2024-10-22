@@ -1,0 +1,58 @@
+@use '@/styles/media';
+
+.filters {
+  order: -1;
+  grid-row: span 2;
+  background-color: var(--color-white);
+  align-self: start;
+  border-radius: var(--border-radius);
+  padding: 10px 0;
+  box-shadow: var(--box-shadow);
+
+  &__title {
+    padding: 10px 20px;
+    color: var(--color-font-black);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  &__list {
+    border: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+
+    @include media.mobile {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+
+  &__item {
+    padding: 10px 20px 10px 50px;
+    color: var(--color-font-black);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &__item:hover {
+    background-color: var(--color-hover);
+  }
+
+  &__item:has(input:focus) {
+    background-color: var(--color-hover);
+  }
+
+  @include media.mobile {
+    order: 0;
+  }
+}

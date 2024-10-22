@@ -1,0 +1,36 @@
+@use '@/styles/mixins';
+@use '@/styles/media';
+
+.warning {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+  font-size: 16px;
+  font-weight: 400;
+
+  &__image {
+    width: 150px;
+  }
+
+  &__desc {
+    text-align: center;
+  }
+
+  &__btn {
+    @include mixins.reset-btn;
+    padding: 6px 12px;
+    background-color: var(--color-white);
+    color: var(--color-font-black);
+    border: 1px solid var(--color-primary);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition-property: transform, box-shadow;
+    transition-timing-function: ease;
+
+    @include media.hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
