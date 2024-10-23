@@ -1,0 +1,38 @@
+.sort {
+  &__options {
+    display: flex;
+  }
+
+  &__btn {
+    flex: 1 0 100px;
+    border: 1px solid #dfe5ec;
+    background: #ffffff;
+    height: 50px;
+    margin: 0 -1px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--color-font-black);
+  }
+
+  &__btn:hover:not(.selected) {
+    background-color: var(--color-hover);
+    color: var(--color-font-black);
+  }
+}
+
+.selected {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.left {
+  border-radius: 5px 0 0 5px;
+}
+
+.right {
+  border-radius: 0 5px 5px 0;
+}

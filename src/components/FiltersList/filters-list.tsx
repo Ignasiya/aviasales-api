@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import FilterItem from '@/components/FilterItem'
-import css from './filter-list.module.scss'
+import FiltersItem from '@/components/FiltersItem'
+import css from './filters-list.module.scss'
 
-export default function FilterList() {
+export default function FiltersList() {
   const [selectedFilters, setSelectedFilters] = useState<string[]>(['all'])
 
   console.log(selectedFilters)
@@ -38,7 +38,7 @@ export default function FilterList() {
         <fieldset className={css.filters__list}>
           <legend className={css.filters__title}>Количество пересадок</legend>
           {filters.map(filter => (
-            <FilterItem
+            <FiltersItem
               key={filter.name}
               className={css.filters__item}
               filter={filter}

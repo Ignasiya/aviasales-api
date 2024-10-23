@@ -1,7 +1,7 @@
 import React from 'react'
-import css from './filter-item.module.scss'
+import css from './filters-item.module.scss'
 
-interface FilterItemProps {
+interface FiltersItemProps {
   className?: string
   checked?: boolean
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
@@ -11,7 +11,7 @@ interface FilterItemProps {
   }
 }
 
-export default function FilterItem({ className, filter, ...props }: FilterItemProps) {
+export default function FiltersItem({ className, filter, ...props }: FiltersItemProps) {
   return (
     <label className={className}>
       <input className={css.check__input} type='checkbox' name={filter.name} {...props} />
