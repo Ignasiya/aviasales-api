@@ -16,6 +16,6 @@ export type AppState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 
 export const useAppSelector = useSelector.withTypes<AppState>()
-export const useAppDispath = useDispatch.withTypes<AppDispatch>()
+export const useAppDispatch = useDispatch.withTypes<AppDispatch>()
 
 export default store

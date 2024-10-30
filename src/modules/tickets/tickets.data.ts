@@ -99,6 +99,46 @@ const initialTickets = {
           stops: ['IST', 'IST']
         }
       ]
+    },
+    {
+      price: 47490,
+      carrier: 'AK',
+      segments: [
+        {
+          origin: 'MOW',
+          destination: 'HKT',
+          date: '2024-11-02T22:29:56.391Z',
+          duration: 830,
+          stops: []
+        },
+        {
+          origin: 'HKT',
+          destination: 'MOW',
+          date: '2025-07-06T02:45:48.996Z',
+          duration: 1189,
+          stops: ['IST', 'DEL']
+        }
+      ]
+    },
+    {
+      price: 50110,
+      carrier: 'DP',
+      segments: [
+        {
+          origin: 'MOW',
+          destination: 'HKT',
+          date: '2025-05-31T06:10:44.299Z',
+          duration: 895,
+          stops: []
+        },
+        {
+          origin: 'HKT',
+          destination: 'MOW',
+          date: '2026-03-30T07:31:25.145Z',
+          duration: 1254,
+          stops: ['HKG', 'DOH', 'DOH']
+        }
+      ]
     }
   ],
   stop: true

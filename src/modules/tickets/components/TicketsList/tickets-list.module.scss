@@ -37,4 +37,12 @@
       box-shadow: inset 0 0 0 3px var(--color-primary);
     }
   }
+
+  &__empty {
+    color: var(--color-font-black);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 21px;
+    text-align: center;
+  }
 }

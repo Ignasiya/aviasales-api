@@ -31,35 +31,4 @@
     flex-direction: column;
     gap: 10px;
   }
-
-  &__segment {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    align-items: center;
-    gap: 10px 20px;
-  }
-
-  &__section {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-.text_gray {
-  color: rgb(160, 176, 185);
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 18px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.text_black {
-  color: rgb(74, 74, 74);
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 21px;
-  white-space: nowrap;
 }
