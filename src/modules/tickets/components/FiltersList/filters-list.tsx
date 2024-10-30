@@ -1,34 +1,35 @@
 import React, { useState } from 'react'
-import FiltersItem from '@/components/FiltersItem'
+import FiltersItem from '@/modules/tickets/components/FiltersItem'
 import css from './filters-list.module.scss'
 
 export default function FiltersList() {
-  const [selectedFilters, setSelectedFilters] = useState<string[]>(['all'])
-
-  console.log(selectedFilters)
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([])
 
   const filters = [
     { name: 'all', label: 'Все' },
-    { name: 'no-transfer', label: 'Без пересадок' },
-    { name: 'one-transfer', label: '1 пересадка' },
-    { name: 'two-transfers', label: '2 пересадки' },
-    { name: 'three-transfers', label: '3 пересадки' }
+    { name: 'noTransfer', label: 'Без пересадок' },
+    { name: 'oneTransfer', label: '1 пересадка' },
+    { name: 'twoTransfers', label: '2 пересадки' },
+    { name: 'threeTransfers', label: '3 пересадки' }
   ]
 
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target
-    setSelectedFilters(prevFilters => {
-      if (name === 'all') {
-        return checked ? ['all'] : []
-      }
 
-      if (checked) {
-        return prevFilters.includes('all')
-          ? [...prevFilters.filter(filter => filter !== 'all'), name]
-          : [...prevFilters, name]
-      } else {
-        return prevFilters.filter(filter => filter !== name)
-      }
+    const allFilters = filters.map(filter => filter.name)
+
+    setSelectedFilters(prevFilters => {
+      if (name === 'all') return checked ? allFilters : []
+
+      const updatedFilters = checked
+        ? prevFilters.filter(filter => filter !== 'all').concat(name)
+        : prevFilters.filter(filter => filter !== 'all' && filter !== name)
+
+      const allFiltersSelected = allFilters
+        .slice(1)
+        .every(filter => updatedFilters.includes(filter))
+
+      return allFiltersSelected ? allFilters : updatedFilters
     })
   }
 

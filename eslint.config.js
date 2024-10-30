@@ -23,6 +23,7 @@ export default [
         ...globals.browser,
         ...globals.jest,
         vi: 'readonly',
+        process: 'readonly',
         global: 'readonly'
       }
     },

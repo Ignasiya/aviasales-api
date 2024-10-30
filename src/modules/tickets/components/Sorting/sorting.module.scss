@@ -1,3 +1,5 @@
+@use '@/styles/media';
+
 .sort {
   &__options {
     display: flex;
@@ -10,12 +12,16 @@
     height: 50px;
     margin: 0 -1px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     line-height: 20px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     color: var(--color-font-black);
+
+    @include media.mobile {
+      font-size: 12px;
+    }
   }
 
   &__btn:hover:not(.selected) {

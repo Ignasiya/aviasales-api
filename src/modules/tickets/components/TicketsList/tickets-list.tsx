@@ -1,6 +1,6 @@
 import React from 'react'
 import css from './tickets-list.module.scss'
-import TicketsItem from '@/components/TicketsItem'
+import TicketsItem from '@/modules/tickets/components/TicketsItem'
 
 export default function Tickets() {
   return (

@@ -1,4 +1,3 @@
-import React from 'react'
 import css from './tickets-item.module.scss'
 
 export default function TicketsItem() {
@@ -7,7 +6,7 @@ export default function TicketsItem() {
       <h3 className={css.ticket__price}>13 400 P</h3>
       <img
         className={css.ticket__logo}
-        src='/images/S7_logo.png'
+        src='https://pics.avs.io/99/36/S7.png'
         alt='s7-airlines'
         loading='lazy'
       />
