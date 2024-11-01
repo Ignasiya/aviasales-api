@@ -7,6 +7,7 @@
 
   &__btn {
     flex: 1 0 100px;
+    position: relative;
     border: 1px solid #dfe5ec;
     background: #ffffff;
     height: 50px;
@@ -17,16 +18,29 @@
     line-height: 20px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
+    outline: none;
     color: var(--color-font-black);
 
     @include media.mobile {
       font-size: 12px;
     }
-  }
 
-  &__btn:hover:not(.selected) {
-    background-color: var(--color-hover);
-    color: var(--color-font-black);
+    &:hover:not(.selected) {
+      background-color: var(--color-hover);
+      color: var(--color-font-black);
+    }
+
+    &:focus-visible::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      bottom: 2px;
+      left: 2px;
+      right: 2px;
+      border-radius: 5px;
+      border: 2px solid var(--color-check);
+      pointer-events: none;
+    }
   }
 }
 

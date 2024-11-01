@@ -39,7 +39,11 @@ export default function Tickets() {
 
   return size ? (
     <section className={css.tickets}>
-      <div className={css.tickets__loader}>{isLoading && <Spinner />}</div>
+      {isLoading && (
+        <div className={css.tickets__loader}>
+          <Spinner />
+        </div>
+      )}
       <ul className={css.tickets__list}>
         {filterSortedTickets
           .slice(0, displayCount)
