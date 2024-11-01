@@ -1,0 +1,52 @@
+@keyframes spinner {
+  0% {
+    top: 32px;
+    left: 32px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 6px;
+    left: 6px;
+    width: 52px;
+    height: 52px;
+    opacity: 0;
+  }
+}
+
+.loadingio {
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+  background: none;
+}
+
+.spinner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0;
+
+  & div {
+    box-sizing: content-box;
+    position: absolute;
+    border-width: 8px;
+    border-style: solid;
+    opacity: 1;
+    border-radius: 50%;
+    animation: spinner 2.272727272727273s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+
+  & div:nth-child(1) {
+    border-color: #ff0b00;
+    animation-delay: 0s;
+  }
+
+  & div:nth-child(2) {
+    border-color: #00c4ff;
+    animation-delay: -1.1363636363636365s;
+  }
+}

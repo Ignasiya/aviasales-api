@@ -1,27 +1,27 @@
 import { createSlice, createAction, createSelector } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { Ticket, TicketsState } from '@/modules/tickets/tickets.types'
+import { Ticket, TicketsState, TicketsResponse } from '@/modules/tickets/tickets.types'
 import { v4 as uuidv4 } from 'uuid'
 
 const initialState: TicketsState = {
-  searchId: '',
   entities: {},
   ids: [],
   stop: false,
   filters: [],
   sort: '',
   isLoading: false,
-  error: ''
+  error: null
 }
 
-export const storedAction = createAction<{
-  tickets: Ticket[]
-  stop: boolean
-}>('stored')
+export const stored = createAction<{ data: TicketsResponse }>('stored')
 
 export const setSort = createAction<string | undefined>('setSort')
 
 export const setFilters = createAction<string[]>('setFilters')
+
+export const setError = createAction<string | null>('setError')
+
+export const setLoading = createAction<boolean>('setIsLoading')
 
 export const ticketsSlice = createSlice({
   name: 'tickets',
@@ -31,6 +31,8 @@ export const ticketsSlice = createSlice({
     ids: state => state.ids,
     sort: state => state.sort,
     filters: state => state.filters,
+    isLoading: state => state.isLoading,
+    error: state => state.error,
     sortedFilters: createSelector(
       [
         (state: TicketsState) => state.ids,
@@ -64,25 +66,32 @@ export const ticketsSlice = createSlice({
   },
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(
-      storedAction,
-      (state, action: PayloadAction<{ tickets: Ticket[]; stop: boolean }>) => {
-        const { tickets, stop } = action.payload
+    builder.addCase(stored, (state, action: PayloadAction<{ data: TicketsResponse }>) => {
+      const { tickets, stop } = action.payload.data
 
-        state.ids = tickets.map(ticket => {
-          const ticketId = uuidv4()
-          state.entities[ticketId] = ticket
-          return ticketId
-        })
+      tickets.forEach(ticket => {
+        const ticketId = uuidv4()
+        const newTicket: Ticket = { ...ticket, id: ticketId }
 
-        state.stop = stop
-      }
-    )
+        if (!state.entities[ticketId]) {
+          state.entities[ticketId] = newTicket
+          state.ids.push(ticketId)
+        }
+      })
+
+      state.stop = stop
+    })
     builder.addCase(setSort, (state, action: PayloadAction<string | undefined>) => {
       state.sort = action.payload || ''
     })
     builder.addCase(setFilters, (state, action: PayloadAction<string[]>) => {
       state.filters = action.payload
+    })
+    builder.addCase(setError, (state, action: PayloadAction<string | null>) => {
+      state.error = action.payload
+    })
+    builder.addCase(setLoading, (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload
     })
   }
 })
