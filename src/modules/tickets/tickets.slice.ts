@@ -7,8 +7,8 @@ const initialState: TicketsState = {
   entities: {},
   ids: [],
   stop: false,
-  filters: [],
-  sort: '',
+  filters: ['0Transfer', '1Transfer', '2Transfers', '3Transfers'],
+  sort: 'price',
   isLoading: false,
   error: null
 }
@@ -46,7 +46,7 @@ export const ticketsSlice = createSlice({
           .filter(
             (ticket): ticket is Ticket =>
               ticket !== undefined &&
-              filters.every(filter =>
+              filters.some(filter =>
                 ticket.segments.some(segment => segment.stops.length === parseInt(filter))
               )
           )

@@ -19,18 +19,16 @@ export default function FiltersList() {
   const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target
 
-    const allFilters = filters.map(filter => filter.name)
+    const allFilters = filters.map(filter => filter.name).slice(1)
 
     if (name === 'all') {
       dispatch(setFilters(checked ? allFilters : []))
     } else {
       const updatedFilters = checked
-        ? selectedFilters.filter(filter => filter !== 'all').concat(name)
-        : selectedFilters.filter(filter => filter !== name && filter !== 'all')
+        ? [...selectedFilters, name]
+        : selectedFilters.filter(filter => filter !== name)
 
-      const allFiltersSelected = allFilters
-        .slice(1)
-        .every(filter => updatedFilters.includes(filter))
+      const allFiltersSelected = allFilters.every(filter => updatedFilters.includes(filter))
 
       dispatch(setFilters(allFiltersSelected ? allFilters : updatedFilters))
     }
@@ -46,7 +44,10 @@ export default function FiltersList() {
               key={filter.name}
               className={css.filters__item}
               filter={filter}
-              checked={selectedFilters.includes(filter.name)}
+              checked={
+                selectedFilters.includes(filter.name) ||
+                selectedFilters.length === filters.length - 1
+              }
               onChange={handleFilterChange}
             />
           ))}
